@@ -8,3 +8,5 @@ lessc src/app/views/home/home.less dist/assets/css/home.css
 cp src/app/styles/*.css dist/assets/css/
 cp src/app/views/home/home.template.html dist/index.html
 
+# 写入html
+sed -i '' '/<!-- content-inject -->/ r src/app/views/home/home.html' dist/index.html
