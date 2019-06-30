@@ -1,11 +1,6 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "paths": {
-      "src/*": ["../src/*"],
-      "@/*": ["app/*"] // 新增alias
-    }
   },
   "exclude": [
     "test.ts",
