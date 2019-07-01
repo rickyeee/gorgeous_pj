@@ -1,3 +1,4 @@
+import { bindStates } from 'src/app/utils';
 import { HomeState } from '@/service/state';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,17 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewsComponent implements OnInit {
     test = [];
+    testSync = 0;
 
-    constructor(private state: HomeState) {}
+    constructor(private state: HomeState) {
+        bindStates(['testSync', 'test'], this);
+    }
 
     ngOnInit() {
-        this.state.test.bind(this);
     }
 
     clickBtn() {
         this.state.test.async()
-            .subscribe(res => {
-                console.log(res);
-            });
+            .subscribe(res => {});
+        this.state.testSync.sync(++this.testSync);
     }
 }

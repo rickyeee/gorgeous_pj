@@ -1,5 +1,5 @@
-import { stateEvent } from './event';
 import { Observable } from 'rxjs';
+import { stateEvent } from './event';
 
 /**
  * 定义行为 T: 存储和获取的数据结构
@@ -168,3 +168,4 @@ export function Sync(defaultData = null): any {
 //         });
 //     };
 // }
+
