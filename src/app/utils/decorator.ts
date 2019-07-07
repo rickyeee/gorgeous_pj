@@ -25,18 +25,12 @@ export interface SyncActions<T> {
  * async mode
  * @Async 接受一个默认值以及一个副作用的Observable，promise暂不支持
  * 只传入Observable则默认值为null
+ * @param sideEffect 异步Ob
  * @param data? 默认值 or 初始值
- * @param sideEffect? 异步Ob
  */
-export function Async(data = null, sideEffect?: Observable<any>): any {
-    let defaultData = null;
-    let $sideEffect = null;
-    if (data instanceof Observable) {
-        $sideEffect = data;
-    } else {
-        defaultData = data;
-        $sideEffect = sideEffect;
-    }
+export function Async(sideEffect: Observable<any>, data? ): any {
+    const defaultData = data || null;
+    const $sideEffect = sideEffect;
     return (target, propertyKey) => {
         // async 返回一个Observable
         const namespace = target.namespace ? target.namespace() : '';
@@ -57,7 +51,7 @@ export function Async(data = null, sideEffect?: Observable<any>): any {
                         ob.error(err);
                     });
                 } else {
-                    console.warn('sideEffect is required for async mode');
+                    console.warn('sideEffect must be an Observable');
                 }
             }),
             get: () => target.getState(stateKey),
