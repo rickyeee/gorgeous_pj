@@ -13,7 +13,7 @@ export class ViewsComponent implements OnInit {
     testSync = 0;
 
     constructor(private state: HomeState) {
-        // bindStates(['testSync', 'test'], this);
+        bindStates(['testSync', 'test'], this);
     }
 
     ngOnInit() {
@@ -21,8 +21,8 @@ export class ViewsComponent implements OnInit {
 
     clickBtn() {
         this.show = !this.show;
-        // this.state.test.async()
-        //     .subscribe(res => {});
-        // this.state.testSync.sync(++this.testSync);
+        this.state.test.async()
+            .subscribe(res => {});
+        this.state.testSync.sync(++this.testSync);
     }
 }

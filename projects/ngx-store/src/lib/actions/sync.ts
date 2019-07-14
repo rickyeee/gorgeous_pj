@@ -10,7 +10,7 @@ export function generateSyncActions(
     prototype.setState(stateKey, defaultData);
     return {
         sync: (payload) => prototype.setState(stateKey, payload),
-            get: () => prototype.getState(stateKey),
-            bind: binding(stateKey, propertyKey, prototype)
+        get: () => prototype.getState(stateKey),
+        bind: binding(stateKey, propertyKey)
     };
 }

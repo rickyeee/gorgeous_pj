@@ -40,7 +40,6 @@ class NotificationCenter {
     removeObserver(name, idx) {
         const subj = this.get(name);
         subj.observers.splice(idx, 1);
-        console.log(subj.observers);
     }
 
     unsubscribe(name: string) {

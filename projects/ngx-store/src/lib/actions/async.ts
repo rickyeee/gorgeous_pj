@@ -26,6 +26,6 @@ export function generateAsyncActions(
             }
         }),
         get: () => prototype.getState(stateKey),
-        bind: binding(stateKey, propertyKey, prototype)
+        bind: binding(stateKey, propertyKey)
     };
 }

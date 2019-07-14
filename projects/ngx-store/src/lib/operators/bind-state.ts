@@ -1,6 +1,7 @@
 import { State } from '../state';
 import { subscriberSymbol } from '../actions/binding';
 import { NC } from '../eventbus';
+import { decode } from '../utils';
 
 const WRAPPED_ON_DESTORY = 'ngOnDestroy';
 
@@ -33,7 +34,7 @@ function unbindWhenDestroy(context) {
             destroyFn.call(context);
         }
         context[subscriberSymbol].forEach(item => {
-            NC.removeObserver(item.split('-')[1], item.split('-')[0]);
+            NC.removeObserver(decode(item).key, decode(item).id);
         });
         context[subscriberSymbol] = [];
     };
