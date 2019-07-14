@@ -8,19 +8,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./views.component.less']
 })
 export class ViewsComponent implements OnInit {
+    show = true;
     test = [];
     testSync = 0;
 
     constructor(private state: HomeState) {
-        bindStates(['testSync', 'test'], this);
+        // bindStates(['testSync', 'test'], this);
     }
 
     ngOnInit() {
     }
 
     clickBtn() {
-        this.state.test.async()
-            .subscribe(res => {});
-        this.state.testSync.sync(++this.testSync);
+        this.show = !this.show;
+        // this.state.test.async()
+        //     .subscribe(res => {});
+        // this.state.testSync.sync(++this.testSync);
     }
 }

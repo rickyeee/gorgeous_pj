@@ -1,4 +1,4 @@
 <button (click)="clickBtn()">12321</button>
 <p>async: {{test[0]}}</p>
 <p>sync: {{testSync}}</p>
-<router-outlet></router-outlet>
+<app-home *ngIf="show"></app-home>

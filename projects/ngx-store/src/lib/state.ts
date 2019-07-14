@@ -1,4 +1,4 @@
-import { stateEvent } from './eventbus';
+import { NC } from './eventbus';
 
 export abstract class State {
 
@@ -9,8 +9,8 @@ export abstract class State {
     protected setState(key, payload) {
         // todo: for middlewares
         // log/upload data
-        State.root = { ...State.root, [key]: payload };
-        stateEvent.emit(key, payload);
+        State.root[key] = payload;
+        NC.notify(key, payload);
     }
 
     protected getState(key) {

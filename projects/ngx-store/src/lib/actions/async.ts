@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { stateEvent } from '../eventbus';
 import { AsyncActions } from '../types';
+import { binding } from './binding';
 
 export function generateAsyncActions(
     prototype, propertyKey: string, $sideEffect: Observable<any>, defaultData: any
@@ -26,12 +26,6 @@ export function generateAsyncActions(
             }
         }),
         get: () => prototype.getState(stateKey),
-        bind: (context) => {
-            // todo：防止多次bind，同一个context对同一个属性只能监听一次
-            stateEvent.on(stateKey, (payload) => {
-                context[propertyKey] = payload;
-            });
-            return context[propertyKey] = prototype.getState(stateKey);
-        }
+        bind: binding(stateKey, propertyKey, prototype)
     };
 }
