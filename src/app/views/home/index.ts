@@ -31,16 +31,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         // bindStates(['testSync', 'test'], this, state );
     }
 
-    ngOnInit() {
-        console.log('oninit')
-    }
+    ngOnInit() {}
 
     clickTest() {
-        this.state.test.async()
-            .subscribe(res => {
-                console.log(res);
-            });
-        this.state.testSync.sync(++this.testSync);
+        // setInterval(() => {
+            this.state.test.async()
+            .subscribe();
+            this.state.testSync.sync(++this.testSync);
+        // }, 2000);
         // console.log(this.state.testSync.get());
     }
 

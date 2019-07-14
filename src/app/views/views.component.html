@@ -1,4 +1,7 @@
-<button (click)="clickBtn()">12321</button>
-<p>async: {{test[0]}}</p>
-<p>sync: {{testSync}}</p>
-<app-home *ngIf="show"></app-home>
+<div class="parent">
+    <h2>parent component</h2>
+    <button (click)="clickBtn()">click me to <b>{{interval ? 'STOP' : 'START'}}</b> interval</button>
+    <p>async: {{test[0]}}</p>
+    <p>sync: {{testSync}}</p>
+    <app-home *ngIf="show"></app-home>
+</div>

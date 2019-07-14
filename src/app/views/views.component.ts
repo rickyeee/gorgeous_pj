@@ -12,17 +12,26 @@ export class ViewsComponent implements OnInit {
     test = [];
     testSync = 0;
 
+    interval = null;
+
     constructor(private state: HomeState) {
         bindStates(['testSync', 'test'], this);
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     clickBtn() {
-        this.show = !this.show;
-        this.state.test.async()
-            .subscribe(res => {});
-        this.state.testSync.sync(++this.testSync);
+        if (!this.interval) {
+            this.interval = setInterval(() => {
+                // set async state
+                this.state.test.async()
+                    .subscribe();
+                // set sync state
+                this.state.testSync.sync(++this.testSync);
+            }, 2000);
+        } else {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
     }
 }
