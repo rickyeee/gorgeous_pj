@@ -14,8 +14,7 @@ export const subscriberSymbol = Symbol('subscriberSymbolForStore');
 export function binding(stateKey, propertyKey) {
     return (context) => {
         if (stateKeyNotBinded(stateKey, context)) {
-            context[propertyKey] = payload;
-	    const subscriber = (payload) => {
+            const subscriber = (payload) => {
                 context[propertyKey] = payload;
             };
             const subscriberId = NC.subscribe(stateKey, subscriber);
