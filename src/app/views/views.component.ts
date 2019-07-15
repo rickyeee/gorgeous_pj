@@ -1,6 +1,6 @@
-import { bindStates } from 'src/app/utils';
 import { HomeState } from '@/service/state';
 import { Component, OnInit } from '@angular/core';
+import { bindStates } from 'projects/ngx-store/src/public_api';
 
 @Component({
     selector: 'app-views',
