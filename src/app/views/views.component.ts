@@ -15,11 +15,16 @@ export class ViewsComponent implements OnInit {
     interval = null;
 
     constructor(private state: HomeState) {
+        // this.state.testSync.bind(this);
+        // this.state.test.bind(this);
         bindStates(['testSync', 'test'], this);
     }
 
     ngOnInit() {}
 
+    destroyChild() {
+        this.show = !this.show;
+    }
     clickBtn() {
         if (!this.interval) {
             this.interval = setInterval(() => {

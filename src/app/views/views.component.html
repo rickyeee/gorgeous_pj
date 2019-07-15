@@ -1,6 +1,8 @@
 <div class="parent">
     <h2>parent component</h2>
-    <button (click)="clickBtn()">click me to <b>{{interval ? 'STOP' : 'START'}}</b> interval</button>
+    <button (click)="clickBtn()">click me to <b>{{interval ? 'STOP' : 'START'}}</b> interval of changing state</button>
+    &nbsp;&nbsp;
+    <button (click)="destroyChild()">click me to <b>{{show ? 'DESTROY' : 'INIT'}}</b> child component</button>
     <p>async: {{test[0]}}</p>
     <p>sync: {{testSync}}</p>
     <app-home *ngIf="show"></app-home>

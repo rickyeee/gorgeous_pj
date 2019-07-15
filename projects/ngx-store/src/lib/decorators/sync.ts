@@ -1,18 +1,8 @@
 import { generateSyncActions } from '../actions';
 
 /**
- * 同步action只能触发同步行为
- */
-export interface SyncActions<T> {
-    sync(payload: T): void;
-    get(): T;
-    // 双向绑定state，跨组件同步已更新的state
-    bind(context): T;
-}
-
-/**
  * sync mode
- * @param defaultData? 默认值 or 初始值
+ * @param defaultData?
  */
 export function Sync(defaultData = null): any {
     return (target, propertyKey) => {

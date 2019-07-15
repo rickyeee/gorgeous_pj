@@ -2,17 +2,23 @@ import { Observable } from 'rxjs';
 import { AsyncActions } from '../types';
 import { binding } from './binding';
 
+/**
+ * ASYNC ACTION
+ * @param prototype prototype of decorated state instance by @Async
+ * @param propertyKey component property
+ * @param $sideEffect async reducer
+ * @param defaultData default
+ */
 export function generateAsyncActions(
     prototype, propertyKey: string, $sideEffect: Observable<any>, defaultData: any
 ): AsyncActions<any> {
     const namespace = prototype.namespace ? prototype.namespace() : '';
     const stateKey = `${namespace}/${propertyKey}`;
-    // 设置一个默认值
-    prototype.setState(stateKey, defaultData);
+    // default state
+    prototype.setState(stateKey, defaultData || null);
     return {
-        sync: (payload) => prototype.setState(stateKey, payload),
+        // sync: (payload) => prototype.setState(stateKey, payload),
         async: () => new Observable(ob => {
-            // 注册时返回Ob才可以调用
             if ($sideEffect && $sideEffect instanceof Observable) {
                 $sideEffect.subscribe(result => {
                     prototype.setState(stateKey, result);
@@ -26,6 +32,6 @@ export function generateAsyncActions(
             }
         }),
         get: () => prototype.getState(stateKey),
-        bind: binding(stateKey, propertyKey)
+        bind: binding(prototype, stateKey, propertyKey)
     };
 }

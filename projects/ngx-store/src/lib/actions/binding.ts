@@ -7,13 +7,16 @@ export const subscriberSymbol = Symbol('subscriberSymbolForStore');
 /**
  * update state to component
  * @param stateKey KEY
+ * @param prototype prototype of state instance
  * @param propertyKey property of component
  * @param prototype prototype of State
  * @param context component
  */
-export function binding(stateKey, propertyKey) {
+export function binding(prototype, stateKey, propertyKey) {
     return (context) => {
         if (stateKeyNotBinded(stateKey, context)) {
+            // set default state when binded
+            context[propertyKey] = prototype.getState(stateKey);
             const subscriber = (payload) => {
                 context[propertyKey] = payload;
             };

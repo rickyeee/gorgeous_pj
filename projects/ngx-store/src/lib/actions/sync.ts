@@ -6,11 +6,11 @@ export function generateSyncActions(
 ): SyncActions<any> {
     const namespace = prototype.namespace ? prototype.namespace() : '';
     const stateKey = `${namespace}/${propertyKey}`;
-    // 设置一个默认值
-    prototype.setState(stateKey, defaultData);
+    // default state
+    prototype.setState(stateKey, defaultData || null);
     return {
         sync: (payload) => prototype.setState(stateKey, payload),
         get: () => prototype.getState(stateKey),
-        bind: binding(stateKey, propertyKey)
+        bind: binding(prototype, stateKey, propertyKey)
     };
 }
